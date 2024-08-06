@@ -20,6 +20,7 @@
 #include "KLFitter/DetectorBase.h"
 
 #include <iostream>
+#include <stdexcept>
 
 #include "KLFitter/ResolutionBase.h"
 
