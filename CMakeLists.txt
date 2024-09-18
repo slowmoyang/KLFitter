@@ -62,7 +62,7 @@ set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
 list( INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake )
 
 # Add ROOT system directory and require ROOT.
-find_package( ROOT 5.34.10 REQUIRED MathCore Minuit )
+find_package( ROOT 5.34.10 REQUIRED MathCore Minuit RooFit RooFitCore)
 
 # Figure out what to do with BAT.
 set( _buildDir ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/BATBuild )
@@ -94,6 +94,7 @@ endif()
 # Public header files for the shared/static library.
 set( lib_headers
   include/KLFitter/BoostedLikelihoodTopLeptonJets.h
+  ./include/KLFitter/DetectorCMS_PhaseII_noPU_v0.h
   include/KLFitter/DetectorAtlas_7TeV.h
   include/KLFitter/DetectorAtlas_8TeV.h
   include/KLFitter/DetectorAtlas_CrystalBall.h
@@ -119,6 +120,7 @@ set( lib_headers
 # Source files for the shared/static library.
 set( lib_sources
   src/BoostedLikelihoodTopLeptonJets.cxx
+  ./src/DetectorCMS_PhaseII_noPU_v0.cxx
   src/DetectorAtlas_7TeV.cxx
   src/DetectorAtlas_8TeV.cxx
   src/DetectorAtlas_CrystalBall.cxx
@@ -140,6 +142,9 @@ set( lib_sources
   src/Particles.cxx
   src/Permutations.cxx
   src/PhysicsConstants.cxx
+  src/ResDoubleCBBase.cxx
+  src/ResDoubleCB_2.cxx
+  src/ResDoubleCB_3.cxx
   src/ResCrystalBallBase.cxx
   src/ResCrystalBallJets.cxx
   src/ResDoubleGaussBase.cxx
@@ -227,6 +232,7 @@ endmacro( KLFitter_add_executable )
 option( INSTALL_EXAMPLES "Install the example executable(s) of KLFitter" ON )
 if( INSTALL_EXAMPLES )
   KLFitter_add_executable( example-top-ljets.exe util/example-top-ljets.cxx )
+  KLFitter_add_executable( tt-alljets util/tt-alljets.cxx )
 endif()
 
 # Install the CMake description of the project.
