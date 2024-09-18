@@ -1,0 +1,5 @@
+Bootstrap: docker
+From: rootproject/root:6.24.06-centos7
+
+%post
+    ln -s /usr/bin/cmake3 /usr/bin/cmake
